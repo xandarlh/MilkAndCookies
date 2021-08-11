@@ -23,13 +23,13 @@ namespace MilkAndCookies.Controllers
         public IEnumerable<string> Get(string flavor)
         {
             //If the flavor user chose exists in "milkshakes", respond with set FavoriteMilkshake cookie with that flavor -
-            // and return the chosen milkshake to the user. TEST
+            // and return the chosen milkshake to the user.
             if (milkshakes.Contains(flavor))
             {
                 //Here we set some options for the cookie. This adds an expiration date for the cookie.
                 CookieOptions co = new CookieOptions();
                 co.Expires = new DateTimeOffset(DateTime.Now.AddMinutes(1));
-
+                
                 Response.Cookies.Append("FavoriteMilkshake", flavor, co);
                 return milkshakes.Contains(flavor) ? milkshakes.Where(f => f == flavor) : null;
             }
