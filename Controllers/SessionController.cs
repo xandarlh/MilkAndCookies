@@ -40,8 +40,14 @@ namespace MilkAndCookies.Controllers
                 return null;
             }
             else
-            {
-                temp.Remove(product);
+            {               
+                for (int i = temp.Count - 1; i >= 0; i--)
+                {
+                    if (temp[i].pName == name || temp[i].pPrice == price)
+                    {
+                        temp.RemoveAt(i);
+                    }
+                }
                 HttpContext.Session.SetObjectAsJson("Shoppingcart", temp);
                 return temp;
             }
