@@ -62,16 +62,7 @@ namespace MilkAndCookies
                 endpoints.MapControllers();
 
             });
-            // IMPORTANT: This session call MUST go before UseMvc()
-            app.UseSession();
-
-            // Add MVC to the request pipeline.
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            
         }
 
     }
