@@ -28,8 +28,24 @@ namespace MilkAndCookies.Controllers
                 temp.Add(product);
                 HttpContext.Session.SetObjectAsJson("Shoppingcart", temp);
                 return temp;     
+            }   
+        }
+        [HttpGet("DeleteProduct")]
+        public IEnumerable<Product> Delete(string name, double price)
+        {
+            Product product = new Product(name, price);
+            var temp = HttpContext.Session.GetObjectFromJson<List<Product>>("Shoppingcart");
+            if (temp == null)
+            {
+                return null;
             }
-          
+            else
+            {
+                temp.Remove(product);
+                HttpContext.Session.SetObjectAsJson("Shoppingcart", temp);
+                return temp;
+            }
+
         }
     }
 }
